@@ -1,0 +1,23 @@
+/* Keep the layout close to Furo so future content needs little maintenance. */
+body {
+  --font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.content { width: min(100%, 54rem); }
+.sidebar-brand-text { font-family: Georgia, "Times New Roman", serif; font-size: 1.4rem; }
+article h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(2.35rem, 5vw, 3.4rem); line-height: 1.13; letter-spacing: -.035em; }
+article h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; padding-top: .75rem; }
+article h3 { font-size: 1.12rem; line-height: 1.5; }
+article p { line-height: 1.8; }
+article a { text-underline-offset: .2em; }
+.eyebrow { color: var(--color-brand-content); font-size: .78rem; font-weight: 650; text-transform: uppercase; letter-spacing: .12em; margin-top: 1rem; }
+.eyebrow p { margin-bottom: .8rem; }
+.introduction p { font-size: 1.3rem; line-height: 1.6; }
+article .profile-details.container { padding: 1.1rem 1.4rem; margin: 2rem 0; border-left: 3px solid var(--color-brand-primary); background: var(--color-background-secondary); }
+.profile-details p:first-child { margin-top: 0; }
+.profile-details p:last-child { margin-bottom: 0; }
+article hr { margin: 1.8rem 0; }
+@media (max-width: 46rem) {
+  article h1 { overflow-wrap: break-word; }
+  article .profile-details.container { padding: 1rem; }
+}
