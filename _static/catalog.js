@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const controls = collection.querySelector('.collection-controls');
     const grid = collection.querySelector('.collection-grid');
     const cards = [...grid.querySelectorAll('.collection-card')];
+    const cardTopics = new Map(cards.map(card => [card, JSON.parse(card.dataset.topics)]));
     const year = controls.querySelector('[data-filter="year"]');
     const topic = controls.querySelector('[data-filter="topic"]');
     const order = controls.querySelector('[data-sort]');
@@ -13,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const comparison = a.dataset.date.localeCompare(b.dataset.date);
         return order.value === 'oldest' ? comparison : -comparison;
       }).forEach((card) => {
-        card.hidden = Boolean((year.value && card.dataset.year !== year.value) || (topic.value && card.dataset.topic !== topic.value));
+        card.hidden = Boolean((year.value && card.dataset.year !== year.value) || (topic.value && !cardTopics.get(card).includes(topic.value)));
         if (!card.hidden) count += 1;
         grid.append(card);
       });
