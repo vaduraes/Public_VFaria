@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resource adequacy with more wind and solar &mdash; Victor A. D. de Faria</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d9958e39" />
+
+  
+    <link rel="canonical" href="https://vaduraes.github.io/Public_VFaria/projects/resource-adequacy.html" />
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7f41d439"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/legacy-links.js?v=6911f266"></script>
+      <script src="../_static/catalog.js?v=53dc601c"></script>
+      <script src="../_static/presentations.js?v=13450fb2"></script>
+      <script src="../_static/external-links.js?v=c8306aac"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Co-located offshore wind and wave energy" href="colocated-wind-wave.html" />
+    <link rel="prev" title="Joint marine energy portfolio, site, and device design" href="marine-device-design.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #122f42" >
+<a class="profile-brand" href="../index.html">
+  <img class="profile-portrait" src="../_static/images/victor-faria.jpg" alt="Victor de Faria" width="96" height="96">
+  <span class="profile-name">Victor de Faria</span>
+  <span class="profile-discipline">Energy systems &amp; optimization</span>
+</a>
+<div class="profile-divider" aria-hidden="true"></div>
+<nav class="profile-links" aria-label="Profile links">
+  <a href="../publications/cv.html#documents" aria-label="CV and documents">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Z M14 3v5h5 M9 12h6 M9 16h6"/></svg>
+    <span>CV</span>
+  </a>
+  <a href="https://scholar.google.com/citations?user=zlwE4DkAAAAJ&amp;hl=en">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 9 9-5 9 5-9 5-9-5Z M7 11v6c3 2 7 2 10 0v-6 M21 9v7"/></svg>
+    <span>Google Scholar</span>
+  </a>
+  <a href="https://www.linkedin.com/in/victorduraes/">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7 M7 7h.01 M11 17v-7 M11 13a3 3 0 0 1 6 0v4"/></svg>
+    <span>LinkedIn</span>
+  </a>
+  <a href="https://github.com/vaduraes">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 19c-4.3 1.3-4.3-2.5-6-3 M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-7 0C5.27.65 4.09 1 4.09 1A5.07 5.07 0 0 0 4 4.77 5.44 5.44 0 0 0 2.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22"/></svg>
+    <span>GitHub</span>
+  </a>
+</nav>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search this site" aria-label="Search this site">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+<div class="profile-divider" aria-hidden="true"></div>
+
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../publications/index.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../presentations/index.html">Presentations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grants/index.html">Grants &amp; research support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publications/cv.html">CV &amp; documents</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Projects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="reeds-uncertainty.html">Uncertainty in electricity investment decisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flood-network-vulnerability.html">Road network vulnerability under floods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solar-pv-detection.html">Mapping distributed solar with computer vision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="marine-device-design.html">Joint marine energy portfolio, site, and device design</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Resource adequacy with more wind and solar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colocated-wind-wave.html">Co-located offshore wind and wave energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mooring-fragility.html">Mooring fragility under hurricane conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage-capacity-expansion.html">Energy storage in long term planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="load-forecasting.html">Neural networks for electricity demand forecasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="offshore-stochastic-portfolios.html">AI scenario generation and risk-averse offshore portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="streamflow-forecasting.html">Streamflow forecasting for interconnected hydropower systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="marine-energy-portfolios.html">Offshore renewable portfolio optimization for North Carolina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="synchronous-machine-estimation.html">Identifying synchronous-machine parameters under varying field voltage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="induction-motor-efficiency.html">Understanding efficiency improvements in induction motors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hydropower-climate-risk.html">Climate change and hydropower revenues in Brazil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firm-energy-rights.html">Cooperative game theory for firm energy rights</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../teaching/index.html">Teaching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/index.html">Research software</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #122f42" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Victor A. D. de Faria</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Projects</a></li>
+      <li class="breadcrumb-item active">Resource adequacy with more wind and solar</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="resource-adequacy-with-more-wind-and-solar">
+<h1>Resource adequacy with more wind and solar<a class="headerlink" href="#resource-adequacy-with-more-wind-and-solar" title="Link to this heading"></a></h1>
+<div class="entry-meta docutils container">
+<p>Energy planning · Renewable energy · Optimization · Resource adequacy · Research: 2024–2025</p>
+</div>
+<p><strong>Research period:</strong> October 2024–July 2025, NREL. <strong>Supervisor:</strong> Trieu Mai. Related manuscript: <em>Planning for Resource Adequacy Under Rising VRE Levels: A Cost-Driven Approach</em>, with Jennie Jorgenson, Gregory Brinkman, Trieu Mai, Max Vanatta, and Rebecca Fuchs.</p>
+<p>As wind, solar, and storage grow, the most difficult hours for a power system can shift away from its traditional demand peak. This project asks how much additional investment is needed to meet increasingly stringent resource adequacy targets, and how that cost compares with the effects of demand growth, renewable deployment, siting constraints, and interregional coordination.</p>
+<section id="a-feedback-loop-between-planning-and-reliability">
+<h2>A feedback loop between planning and reliability<a class="headerlink" href="#a-feedback-loop-between-planning-and-reliability" title="Link to this heading"></a></h2>
+<p>I contributed to a workflow linking ReEDS capacity expansion with the Probabilistic Resource Adequacy Suite, PRAS. ReEDS selects investments and operating decisions; PRAS tests the resulting portfolio with chronological weather data and simulated generator outages. If a region misses its reliability target, periods of supply shortfall are passed back to ReEDS to inform the next investment decision.</p>
+<p>The manuscript extends this process with a <strong>dynamic planning reserve margin</strong>. Each modeled investment year begins with a 4% margin. A region that fails its adequacy target receives a four-percentage-point increase alongside the newly identified stress periods. Margins and stress periods are reset at the next five-year investment step, avoiding automatic accumulation of earlier requirements.</p>
+<figure class="align-default" id="id1">
+<img alt="Dynamic planning reserve-margin method: ReEDS sends a system design to PRAS, which returns stressful periods and updated regional reserve requirements until the adequacy target is met." src="../_images/planning-resource-adequacy-workflow.png" />
+<figcaption>
+<p><span class="caption-text"><strong>Updating investments after a reliability assessment.</strong> Detail of Figure 2 from the project manuscript. PRAS evaluates seven historical weather years; regions that miss the target trigger another planning iteration with updated reserve margins and stress periods.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="reliability-targets-and-system-costs">
+<h2>Reliability targets and system costs<a class="headerlink" href="#reliability-targets-and-system-costs" title="Link to this heading"></a></h2>
+<p>The manuscript evaluates <strong>384 scenario combinations</strong> through 2040. These vary minimum wind and solar generation shares from 40% to 70%, electricity-demand growth, renewable siting, transmission expansion, reserve sharing, and allowable expected energy shortfalls. The reliability metric is normalized expected unserved energy: the expected shortfall divided by total electricity demand, expressed in parts per million.</p>
+<p><strong>Preliminary results</strong> indicate that tightening the modeled shortfall limit from 50 to 1 part per million changes 2040 annual system cost by roughly 1% or less when the other scenario conditions are held fixed. Differences in demand growth and system configuration have substantially larger cost effects. Comparing otherwise matched scenarios isolates the additional cost of the stricter adequacy target.</p>
+<p>The findings depend on the modeled scenarios. Individual generating units and interregional trading are simplified, and the study addresses resource adequacy rather than every dimension of grid reliability. The manuscript is under DOE internal review.</p>
+<p><a class="reference external" href="https://github.com/ReEDS-Model/ReEDS">Official ReEDS repository</a> · <a class="reference external" href="https://www.osti.gov/biblio/3013259">ReEDS model documentation (2025)</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Victor A. D. de Faria.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

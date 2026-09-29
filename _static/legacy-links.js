@@ -3,7 +3,7 @@
   const siteRoot = new URL('../', document.currentScript.src);
   if (location.pathname !== siteRoot.pathname && location.pathname !== `${siteRoot.pathname}index.html`) return;
   const pages = {
-    research: 'research/index.html',
+    research: 'projects/index.html',
     publications: 'publications/index.html',
     presentations: 'presentations/index.html',
     teaching: 'teaching/index.html',
