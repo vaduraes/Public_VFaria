@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="88" viewBox="0 0 128 88" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<!-- Composed from Lucide icons. Copyright (c) 2026 Lucide Icons and Contributors.
+ISC License
+
+Copyright (c) 2026 Lucide Icons and Contributors
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+-->
+<rect x="0" y="0" width="128" height="88" rx="18" fill="#f0f5f6"/>
+<g transform="translate(8 25) scale(1.6)" stroke="#11686d" stroke-width="1.5">
+  <path d="M12 18V5" />
+  <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4" />
+  <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5" />
+  <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77" />
+  <path d="M18 18a4 4 0 0 0 2-7.464" />
+  <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517" />
+  <path d="M6 18a4 4 0 0 1-2-7.464" />
+  <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77" />
+</g><g transform="translate(88 10) scale(1.1)" stroke="#182f40" stroke-width="1.5">
+  <path d="M12 18V5" />
+  <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4" />
+  <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5" />
+  <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77" />
+  <path d="M18 18a4 4 0 0 0 2-7.464" />
+  <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517" />
+  <path d="M6 18a4 4 0 0 1-2-7.464" />
+  <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77" />
+</g><g transform="translate(88 52) scale(1.1)" stroke="#182f40" stroke-width="1.5">
+  <path d="M12 18V5" />
+  <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4" />
+  <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5" />
+  <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77" />
+  <path d="M18 18a4 4 0 0 0 2-7.464" />
+  <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517" />
+  <path d="M6 18a4 4 0 0 1-2-7.464" />
+  <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77" />
+</g><g transform="translate(56 29) scale(1.1)" stroke="#11686d" stroke-width="1.5">
+  <path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+  <path d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1" />
+</g>
+</svg>

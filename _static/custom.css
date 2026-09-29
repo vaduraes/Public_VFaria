@@ -66,11 +66,12 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .rst-content .profile-details p { margin-bottom: 14px; }
 .rst-content .profile-details p:last-child { margin-bottom: 0; }
 .home-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; margin-top: 30px; }
-.home-card { padding: 22px 20px; border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 5px; }
+.home-card { display: flex; flex-direction: column; align-items: flex-start; padding: 22px 20px; border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 5px; }
 .home-card:hover, .home-card:focus-within, .collection-card:focus-within { background: var(--wash); border-color: #91b3bc; }
-.rst-content .home-card h3 { font-size: 21px; margin-bottom: 15px; }
+.rst-content .home-card h3, .rst-content .home-card .rubric { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: 21px; margin: 18px 0 12px; color: var(--ink); }
+.rst-content .home-card-icon { display: block; width: 128px; height: 88px; max-width: 100%; object-fit: contain; }
 .rst-content .home-card p { font-size: 13px; line-height: 1.75; }
-.rst-content .home-card p:last-child { margin-bottom: 0; font-weight: 600; }
+.rst-content .home-card p:last-child { margin-top: auto; margin-bottom: 0; padding-top: 8px; font-weight: 600; }
 .entry-meta { font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--line); margin-bottom: 28px; }
 .collection-controls { display: flex; flex-wrap: wrap; gap: 16px; padding: 18px 20px; margin-top: 28px; background: var(--wash); border-radius: 6px; }
 .collection-controls label { display: flex; flex: 1; flex-direction: column; min-width: 130px; gap: 7px; font-size: 12px; font-weight: 600; }
