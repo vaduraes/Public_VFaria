@@ -9,7 +9,7 @@
   <title>Resource adequacy with more wind and solar &mdash; Victor A. D. de Faria</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d9958e39" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=e5993e72" />
 
   
     <link rel="canonical" href="https://vaduraes.github.io/Public_VFaria/projects/resource-adequacy.html" />
@@ -19,7 +19,7 @@
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/legacy-links.js?v=6911f266"></script>
-      <script src="../_static/catalog.js?v=53dc601c"></script>
+      <script src="../_static/catalog.js?v=e6fcf144"></script>
       <script src="../_static/presentations.js?v=13450fb2"></script>
       <script src="../_static/external-links.js?v=c8306aac"></script>
     <script src="../_static/js/theme.js"></script>
@@ -79,9 +79,9 @@
 <li class="toctree-l2"><a class="reference internal" href="marine-device-design.html">Joint marine energy portfolio, site, and device design</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Resource adequacy with more wind and solar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="colocated-wind-wave.html">Co-located offshore wind and wave energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mooring-fragility.html">Mooring fragility under hurricane conditions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage-capacity-expansion.html">Energy storage in long term planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load-forecasting.html">Neural networks for electricity demand forecasting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="offshore-stochastic-portfolios.html">AI scenario generation and risk-averse offshore portfolios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="streamflow-forecasting.html">Streamflow forecasting for interconnected hydropower systems</a></li>
@@ -123,14 +123,15 @@
   <section class="tex2jax_ignore mathjax_ignore" id="resource-adequacy-with-more-wind-and-solar">
 <h1>Resource adequacy with more wind and solar<a class="headerlink" href="#resource-adequacy-with-more-wind-and-solar" title="Link to this heading"></a></h1>
 <div class="entry-meta docutils container">
-<p>Energy planning · Renewable energy · Optimization · Resource adequacy · Research: 2024–2025</p>
+<p>Energy planning · Renewable energy · Optimization · Resource adequacy</p>
 </div>
-<p><strong>Research period:</strong> October 2024–July 2025, NREL. <strong>Supervisor:</strong> Trieu Mai. Related manuscript: <em>Planning for Resource Adequacy Under Rising VRE Levels: A Cost-Driven Approach</em>, with Jennie Jorgenson, Gregory Brinkman, Trieu Mai, Max Vanatta, and Rebecca Fuchs.</p>
+<p><strong>Supervisor:</strong> Trieu Mai (NREL). Related manuscript: <em>Planning for Resource Adequacy Under Rising VRE Levels: A Cost-Driven Approach</em>, with Jennie Jorgenson, Gregory Brinkman, Trieu Mai, Max Vanatta, and Rebecca Fuchs.</p>
 <p>As wind, solar, and storage grow, the most difficult hours for a power system can shift away from its traditional demand peak. This project asks how much additional investment is needed to meet increasingly stringent resource adequacy targets, and how that cost compares with the effects of demand growth, renewable deployment, siting constraints, and interregional coordination.</p>
 <section id="a-feedback-loop-between-planning-and-reliability">
 <h2>A feedback loop between planning and reliability<a class="headerlink" href="#a-feedback-loop-between-planning-and-reliability" title="Link to this heading"></a></h2>
 <p>I contributed to a workflow linking ReEDS capacity expansion with the Probabilistic Resource Adequacy Suite, PRAS. ReEDS selects investments and operating decisions; PRAS tests the resulting portfolio with chronological weather data and simulated generator outages. If a region misses its reliability target, periods of supply shortfall are passed back to ReEDS to inform the next investment decision.</p>
-<p>The manuscript extends this process with a <strong>dynamic planning reserve margin</strong>. Each modeled investment year begins with a 4% margin. A region that fails its adequacy target receives a four-percentage-point increase alongside the newly identified stress periods. Margins and stress periods are reset at the next five-year investment step, avoiding automatic accumulation of earlier requirements.</p>
+<p>A <strong>planning reserve margin</strong> is a buffer above expected electricity demand. In a conventional capacity-based calculation, a region expecting a 100 GW peak with a 15% margin would plan for 115 GW of dependable capacity. Wind and solar count toward that total according to how much they can be relied on during stressful hours, rather than their full nameplate ratings. There is no single margin for every grid: <a class="reference external" href="https://prod.nerc.com/globalassets/our-work/assessments/nerc_ltra_2025.pdf">NERC’s 2025 long-term assessment</a> lists MISO’s 2025–2026 planning margins as 8.1% for summer and 19.1% for winter, and SPP’s resource-adequacy requirement as 19%.</p>
+<p>The manuscript uses a <strong>dynamic margin</strong> instead of imposing a high, fixed requirement on every modeled region. At the start of each five-year planning step, ReEDS applies a 4% buffer to demand in its stress periods; a 100 GW stress-period load is treated as 104 GW. This <strong>4% is a starting assumption, not a finding about today’s grids or the final margin needed for reliability</strong>. PRAS then tests the planned system against weather variation and generator outages. If a planning region misses its reliability target, the next ReEDS iteration raises its margin by four percentage points (from 4% to 8%, for example) and adds the newly identified stress periods. The model repeats this process as needed, then resets the margin and stress periods for the next five-year step. Starting low lets the reliability assessment determine where more capacity is needed without assuming the same 15–20% buffer everywhere.</p>
 <figure class="align-default" id="id1">
 <img alt="Dynamic planning reserve-margin method: ReEDS sends a system design to PRAS, which returns stressful periods and updated regional reserve requirements until the adequacy target is met." src="../_images/planning-resource-adequacy-workflow.png" />
 <figcaption>

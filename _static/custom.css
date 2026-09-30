@@ -96,6 +96,7 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .rst-content .collection-card p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
 .card-bottom { margin-top: auto; border-top: 1px solid var(--line); padding-top: 15px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 11px; color: var(--muted); }
 .card-bottom a { font-size: 12px; font-weight: 650; }
+.project-card .card-bottom a { margin-left: auto; }
 .content-collection[data-collection="projects"] .collection-grid { grid-template-columns: minmax(0, 1fr); }
 .project-card { position: relative; display: grid; grid-template-columns: minmax(210px, .8fr) minmax(0, 1.2fr); gap: 28px; padding: 28px; }
 .project-card-body { display: flex; flex-direction: column; min-width: 0; }
@@ -190,6 +191,8 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 .rst-content .dissertation-papers ul { margin-bottom: 12px; }
 .rst-content .dissertation-papers li { font-size: 13px; line-height: 1.65; margin-bottom: 10px; }
 .rst-content .dissertation-papers li p { margin: 0; font-size: inherit; line-height: inherit; }
+.rst-content .project-methods table { width: 100%; font-size: 13px; }
+.rst-content .project-methods table th, .rst-content .project-methods table td { white-space: normal; vertical-align: top; }
 .experience-list { border-left: 2px solid var(--line); margin: 0 0 0 7px; padding-left: 25px; }
 .cv-background .role-record { position: relative; padding: 20px 22px; border: 1px solid var(--line); border-radius: 7px; background: white; }
 .experience-list .role-record::before { content: ""; position: absolute; top: 27px; left: -32px; width: 10px; height: 10px; border: 2px solid var(--teal); border-radius: 50%; background: white; }

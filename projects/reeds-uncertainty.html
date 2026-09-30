@@ -9,7 +9,7 @@
   <title>Uncertainty in electricity investment decisions &mdash; Victor A. D. de Faria</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d9958e39" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=e5993e72" />
 
   
     <link rel="canonical" href="https://vaduraes.github.io/Public_VFaria/projects/reeds-uncertainty.html" />
@@ -19,7 +19,7 @@
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/legacy-links.js?v=6911f266"></script>
-      <script src="../_static/catalog.js?v=53dc601c"></script>
+      <script src="../_static/catalog.js?v=e6fcf144"></script>
       <script src="../_static/presentations.js?v=13450fb2"></script>
       <script src="../_static/external-links.js?v=c8306aac"></script>
     <script src="../_static/js/theme.js"></script>
@@ -79,9 +79,9 @@
 <li class="toctree-l2"><a class="reference internal" href="marine-device-design.html">Joint marine energy portfolio, site, and device design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource-adequacy.html">Resource adequacy with more wind and solar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="colocated-wind-wave.html">Co-located offshore wind and wave energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mooring-fragility.html">Mooring fragility under hurricane conditions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage-capacity-expansion.html">Energy storage in long term planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load-forecasting.html">Neural networks for electricity demand forecasting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="offshore-stochastic-portfolios.html">AI scenario generation and risk-averse offshore portfolios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="streamflow-forecasting.html">Streamflow forecasting for interconnected hydropower systems</a></li>
@@ -123,14 +123,14 @@
   <section class="tex2jax_ignore mathjax_ignore" id="uncertainty-in-electricity-investment-decisions">
 <h1>Uncertainty in electricity investment decisions<a class="headerlink" href="#uncertainty-in-electricity-investment-decisions" title="Link to this heading"></a></h1>
 <div class="entry-meta docutils container">
-<p>Energy planning · Optimization · Uncertainty · Conference paper: 2026</p>
+<p>Energy planning · Optimization · Uncertainty · Publication: 2026</p>
 </div>
-<p><strong>Research period:</strong> August 2024–August 2025, NREL. <strong>Collaborators and supervisors:</strong> Brian Sergi and Patrick R. Brown. Supported by the U.S. Department of Energy Grid Deployment Office.</p>
-<p>Electricity investments last for decades, but the assumptions used to plan them can change much sooner. This project asks which features of a future U.S. electricity system persist across uncertain inputs, and which depend on a particular combination of demand growth, technology costs, fuel prices, renewable siting, and federal policy.</p>
+<p><strong>Collaborators and supervisors:</strong> Brian Sergi and Patrick R. Brown, National Renewable Energy Laboratory (NREL). Supported by the U.S. Department of Energy Grid Deployment Office.</p>
+<p>Electricity investments last for decades, while demand, technology costs, fuel prices, and policy can change substantially. This project examines which investment trends persist across plausible futures and which depend strongly on particular assumptions. It considers several sources of uncertainty together to understand how their interactions shape the future U.S. electricity system.</p>
 <section id="from-uncertain-inputs-to-investment-outcomes">
 <h2>From uncertain inputs to investment outcomes<a class="headerlink" href="#from-uncertain-inputs-to-investment-outcomes" title="Link to this heading"></a></h2>
-<p>I developed Monte Carlo workflows in Python and GAMS integrated with the ReEDS capacity expansion model. The conference study evaluates <strong>1,137 completed simulations</strong>, co-optimizing generation, storage, and transmission from 2025 through 2050. It represents the contiguous United States with 132 model zones, representative operating days, and additional periods of system stress.</p>
-<p>Each simulation samples a complete trajectory between low, middle, and high input projections, using the same weights across years to maintain consistency over time. The analysis compares flat and triangular distributions, and tests whether state-level demand and siting assumptions move together or independently. Separate policy scenarios reuse the same random draws, allowing policy effects to be compared while holding other sampled assumptions fixed. The policy baseline reflects August 2025 assumptions.</p>
+<p>We developed Monte Carlo workflows in Python and GAMS for the ReEDS capacity expansion model. The analysis compares <strong>1,137 simulations</strong> that jointly plan generation, storage, and transmission investments from 2025 through 2050. The model represents the contiguous United States in 132 zones, using representative operating days and additional periods of potential supply shortage.</p>
+<p>Each simulation samples a path between low, middle, and high input projections, keeping the sampling weights consistent across years. The analysis compares uniform and triangular probability distributions and tests whether demand and renewable siting assumptions change together across states or vary independently. Policy comparisons use matching samples of the other inputs, making it possible to isolate the effects of the policy assumptions. The policy baseline reflects the assumptions used in August 2025.</p>
 <figure class="align-default" id="id1">
 <img alt="Distributions of 2050 generation, storage, and interregional transmission capacity for six ReEDS scenario groups." src="../_images/planning-reeds-outcomes.png" />
 <figcaption>
@@ -141,9 +141,9 @@
 <section id="what-drives-the-range-of-outcomes">
 <h2>What drives the range of outcomes<a class="headerlink" href="#what-drives-the-range-of-outcomes" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Capacity additions vary widely.</strong> Solar PV, land-based wind, and gas dominate average capacity additions in the current-policy cases. For gas and wind in one central scenario, the 5th-to-95th-percentile span of 2050 capacity exceeds a factor of two.</p></li>
+<li><p><strong>Capacity additions vary widely.</strong> Solar PV, land-based wind, and gas dominate average capacity additions in the study’s baseline policy cases. In the “Flat country” case, which uses uniform sampling with regional inputs moving together, the 95th-percentile estimates of 2050 gas and wind capacity are more than twice their 5th-percentile estimates.</p></li>
 <li><p><strong>Correlation changes the range of national outcomes.</strong> When states move together, their demand and siting changes reinforce one another. Independent state draws partly offset each other, narrowing aggregate variation. Distribution shape and regional correlation affect the spread more than the central values.</p></li>
-<li><p><strong>Policy changes can exceed the effects of the sampling choices.</strong> Continuing the tax credits represented in the study increases median 2050 PV and wind capacity by roughly 200 GW each relative to its matched current-policy case, and approximately doubles median storage capacity.</p></li>
+<li><p><strong>Policy assumptions can have a larger effect than sampling choices.</strong> Continuing the tax credits represented in the study increases median 2050 PV and wind capacity by roughly 200 GW each relative to the matched baseline policy case, and approximately doubles median storage capacity.</p></li>
 <li><p><strong>Inputs interact.</strong> Low nuclear construction costs alone do not explain deployment: the largest additions occur when low nuclear costs coincide with high gas prices. Gas prices and electricity demand also have strong associations with cost and emissions outcomes.</p></li>
 </ul>
 <p>The results are conditional on the sampled ranges and policy assumptions; the analysis does not assign probabilities to actual policy decisions. Its published input projections cover a limited range of futures and omit some possible cost overruns and climate-related changes.</p>

@@ -9,7 +9,7 @@
   <title>Streamflow forecasting for interconnected hydropower systems &mdash; Victor A. D. de Faria</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d9958e39" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=e5993e72" />
 
   
     <link rel="canonical" href="https://vaduraes.github.io/Public_VFaria/projects/streamflow-forecasting.html" />
@@ -19,7 +19,7 @@
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/legacy-links.js?v=6911f266"></script>
-      <script src="../_static/catalog.js?v=53dc601c"></script>
+      <script src="../_static/catalog.js?v=e6fcf144"></script>
       <script src="../_static/presentations.js?v=13450fb2"></script>
       <script src="../_static/external-links.js?v=c8306aac"></script>
     <script src="../_static/js/theme.js"></script>
@@ -79,9 +79,9 @@
 <li class="toctree-l2"><a class="reference internal" href="marine-device-design.html">Joint marine energy portfolio, site, and device design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource-adequacy.html">Resource adequacy with more wind and solar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="colocated-wind-wave.html">Co-located offshore wind and wave energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mooring-fragility.html">Mooring fragility under hurricane conditions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage-capacity-expansion.html">Energy storage in long term planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load-forecasting.html">Neural networks for electricity demand forecasting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="offshore-stochastic-portfolios.html">AI scenario generation and risk-averse offshore portfolios</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Streamflow forecasting for interconnected hydropower systems</a></li>
@@ -123,40 +123,37 @@
   <section class="tex2jax_ignore mathjax_ignore" id="streamflow-forecasting-for-interconnected-hydropower-systems">
 <h1>Streamflow forecasting for interconnected hydropower systems<a class="headerlink" href="#streamflow-forecasting-for-interconnected-hydropower-systems" title="Link to this heading"></a></h1>
 <div class="entry-meta docutils container">
-<p>AI · Machine learning · Hydropower · Project: 2018–2019 · Publication: 2022</p>
+<p>AI · Machine learning · Hydropower · Publication: 2022</p>
 </div>
-<p>Forecasting water availability helps hydropower operators coordinate generation and evaluate electricity-market conditions. In a cascade of reservoirs, observations from one part of the river system can help predict flows elsewhere. This project develops neural-network forecasts of natural streamflow up to 14 days ahead and a systematic way to select useful information across the network.</p>
-<p>The work grew from my streamflow modeling and automation project with Marangon Consulting &amp; Engineering, which covered more than 140 Brazilian hydropower plants. The published study evaluates forecasts at 55 plants in the Paraná Basin.</p>
+<p>Hydropower planning depends on how much water will reach each plant over the coming days. In an interconnected basin, past flows at related plants can help forecast that water, but using every station and every past day adds redundant information. This study asks <strong>which flow records are useful for each plant</strong> and how neural-network training choices affect daily forecasts up to 14 days ahead.</p>
+<p>The paper evaluates <strong>55 plants in Brazil’s Paraná Basin</strong>. It forecasts <em>natural streamflow</em>: an estimate of incoming water that removes the effects of reservoir operations, so flows can be compared across the connected system.</p>
 <figure class="align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/learning-streamflow-network.png"><img alt="Schematic of interconnected hydropower plants in the Paraná Basin, showing river branches, reservoirs, and downstream connections to Itaipu." src="../_images/learning-streamflow-network.png" style="width: 720px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Figure 5 of <a class="reference external" href="https://doi.org/10.1007/s13762-021-03565-y">de Faria et al. (2022)</a> shows the plants and river connections in the case study. As upstream branches converge, flow records from related stations can provide useful inputs for forecasts elsewhere in the network.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+<p><span class="caption-text"><strong>One basin, many connected forecasts.</strong> Figure 5 of <a class="reference external" href="https://doi.org/10.1007/s13762-021-03565-y">de Faria et al. (2022)</a> shows the plants and river connections in the case study. The model can draw on past flows at related stations rather than relying only on the target plant’s history.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <section id="learning-across-the-river-network">
 <h2>Learning across the river network<a class="headerlink" href="#learning-across-the-river-network" title="Link to this heading"></a></h2>
-<p>The study compares optimizers, activation functions, weight initialization, loss functions, and regularization for multilayer perceptrons. An input-selection algorithm screens historical streamflows for relevance to each target plant and removes strongly redundant information.</p>
-<p>The models use daily records from 2000–2016, divided chronologically into training, development, and test periods. Candidate inputs include up to 30 days of historical flow from upstream and downstream plants. A separate experiment at five plants tests whether historical rainfall, including totals accumulated over several days, adds useful information beyond the flow records.</p>
+<p>For each target plant, an input-selection procedure screens up to 30 days of past flows from stations across the basin. It keeps records related to the target forecast while filtering out strongly redundant inputs. This makes the same selection process usable across a large network, rather than choosing inputs by hand for every plant.</p>
+<p>The study uses daily records from 2000–2016, divided in time order into training, development, and test periods. It also compares ways to train the multilayer perceptron networks, including how their weights are initialized and how forecast errors are measured during training. A separate five-plant experiment asks whether past rainfall adds useful information beyond the flow records.</p>
 </section>
 <section id="forecast-performance">
 <h2>Forecast performance<a class="headerlink" href="#forecast-performance" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Suitable weight initialization avoided divergent training in the tested Adam/ReLU configuration and reduced training time by at least 52% in the Adam comparisons. Adam with a hyperbolic-tangent activation performed well overall.</p></li>
-<li><p>The neural networks achieved lower percentage errors for every plant and year in the 2014–2016 operator comparison. They performed better on Nash–Sutcliffe efficiency for 93% of plants in 2015 and 82% in 2016, while the operator performed better on that metric for most plants in 2014.</p></li>
-<li><p>Historical rainfall did not consistently improve forecasts in the five-plant experiment. The choice of loss function also affected the balance between following sudden flow peaks and maintaining accuracy during low-flow periods.</p></li>
+<li><p><strong>Input and training choices mattered.</strong> Suitable weight initialization kept one tested model from diverging and cut training time by at least 52% in the Adam comparisons. Different training losses shifted the balance between following sudden flow peaks and fitting quieter, low-flow periods.</p></li>
+<li><p><strong>The operator comparison depended on the metric.</strong> The neural networks had lower percentage errors across the 55 plants in each year from 2014 to 2016. On Nash–Sutcliffe efficiency, which responds more strongly to flow peaks, they did better for 93% of plants in 2015 and 82% in 2016; the operator’s models did better for most plants in 2014.</p></li>
+<li><p><strong>More inputs did not automatically help.</strong> Adding historical rainfall gave no consistent improvement in the five-plant experiment, even when rainfall was accumulated over several days.</p></li>
 </ul>
 <figure class="align-default" id="id2">
-<img alt="Boxplots comparing neural-network and Brazilian system-operator errors across 55 hydropower plants in 2014, 2015, and 2016." src="../_images/learning-streamflow-comparison.png" />
+<a class="reference internal image-reference" href="../_images/learning-streamflow-comparison.png"><img alt="Boxplots comparing neural-network and Brazilian system-operator errors across 55 hydropower plants in 2014, 2015, and 2016." src="../_images/learning-streamflow-comparison.png" style="width: 800px;" />
+</a>
 <figcaption>
-<p><span class="caption-text">Figure 7 of <a class="reference external" href="https://doi.org/10.1007/s13762-021-03565-y">de Faria et al. (2022)</a> compares percentage error on the left and Nash–Sutcliffe efficiency on the right. Positive values favor the neural networks in both panels. In 2014, lower percentage errors coincided with weaker performance on Nash–Sutcliffe efficiency, which is more sensitive to flow peaks.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+<p><span class="caption-text"><strong>Two ways to judge the forecasts.</strong> Figure 7 of <a class="reference external" href="https://doi.org/10.1007/s13762-021-03565-y">de Faria et al. (2022)</a> compares percentage error on the left and Nash–Sutcliffe efficiency on the right. Positive values favor the neural networks. The 2014 contrast shows why a lower average percentage error does not settle how well a model follows changing flows.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-</section>
-<section id="my-role-and-study-scope">
-<h2>My role and study scope<a class="headerlink" href="#my-role-and-study-scope" title="Link to this heading"></a></h2>
-<p>I worked with Anderson de Queiroz on data preparation, collection, and analysis, and wrote the first manuscript draft. The broader team contributed to study design and review. Together, we developed a repeatable modeling and input-selection procedure for interconnected plants.</p>
-<p>The evaluation covers natural flows in the Paraná Basin over a two-week forecast horizon. The rainfall findings apply to historical observations at five plants; forecast rainfall, other basins, and different horizons may give different results.</p>
+<p>The results come from historical natural-flow records in one basin. The rainfall test uses past observations at five plants; it does not evaluate rainfall forecasts or show that rainfall could never help in another setting.</p>
 </section>
 <section id="related-publication">
 <h2>Related publication<a class="headerlink" href="#related-publication" title="Link to this heading"></a></h2>

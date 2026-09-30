@@ -9,7 +9,7 @@
   <title>Neural networks for electricity demand forecasting &mdash; Victor A. D. de Faria</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d9958e39" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=e5993e72" />
 
   
     <link rel="canonical" href="https://vaduraes.github.io/Public_VFaria/projects/load-forecasting.html" />
@@ -19,13 +19,13 @@
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/legacy-links.js?v=6911f266"></script>
-      <script src="../_static/catalog.js?v=53dc601c"></script>
+      <script src="../_static/catalog.js?v=e6fcf144"></script>
       <script src="../_static/presentations.js?v=13450fb2"></script>
       <script src="../_static/external-links.js?v=c8306aac"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="AI scenario generation and risk-averse offshore portfolios" href="offshore-stochastic-portfolios.html" />
-    <link rel="prev" title="Energy storage in long term planning" href="storage-capacity-expansion.html" /> 
+    <link rel="prev" title="Energy planning under hurricane risk" href="hurricane-risk.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -79,9 +79,9 @@
 <li class="toctree-l2"><a class="reference internal" href="marine-device-design.html">Joint marine energy portfolio, site, and device design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource-adequacy.html">Resource adequacy with more wind and solar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="colocated-wind-wave.html">Co-located offshore wind and wave energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mooring-fragility.html">Mooring fragility under hurricane conditions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage-capacity-expansion.html">Energy storage in long term planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Neural networks for electricity demand forecasting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="offshore-stochastic-portfolios.html">AI scenario generation and risk-averse offshore portfolios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="streamflow-forecasting.html">Streamflow forecasting for interconnected hydropower systems</a></li>
@@ -125,8 +125,8 @@
 <div class="entry-meta docutils container">
 <p>AI · Machine learning · Forecasting · Publications: 2023</p>
 </div>
-<p>Forecasts of tomorrow’s electricity demand support generation scheduling, reserve decisions, and electricity-price formation. This collaboration studies day-ahead forecasts at half-hour intervals for Brazil’s Central-Southeast market, a region with large population centers and varied weather conditions.</p>
-<p>The work includes an empirical comparison of forecasting models and a review of methods used in short-term operational planning. Both papers bring together researchers at Brazilian and U.S. universities and Marangon Consulting &amp; Engineering.</p>
+<p>Forecasts of tomorrow’s electricity demand support generation scheduling, reserve decisions, and electricity-price formation. We developed and tested models that predict demand at half-hour intervals for Brazil’s Central-Southeast market, a region with large population centers and varied weather conditions.</p>
+<p>The empirical study combines model design, software development, and out-of-sample testing. A companion paper reviews forecasting methods and how they fit into short-term operational planning in Brazil.</p>
 <figure class="align-default" id="id1">
 <img alt="Workflow connecting load, temperature, calendar, and holiday inputs to neural-network models and day-ahead forecast evaluation." src="../_images/learning-load-workflow.png" />
 <figcaption>
@@ -135,7 +135,7 @@
 </figure>
 <section id="comparing-forecast-models">
 <h2>Comparing forecast models<a class="headerlink" href="#comparing-forecast-models" title="Link to this heading"></a></h2>
-<p>The empirical study compares shallow and deeper multilayer perceptrons with long short-term memory networks and gated recurrent units, including versions that process the input sequence in both directions. Inputs combine recent load, calendar and holiday information, and temperature forecasts. A separate experiment uses NOAA Global Ensemble Forecast System (GEFS) temperatures, weighted by population and bias-corrected for the study region.</p>
+<p>We built a forecasting workflow that fills gaps in the data, normalizes load and temperature inputs, encodes calendar information, and prepares sequences for model training. The empirical study compares shallow and deeper multilayer perceptrons with long short-term memory networks and gated recurrent units, including versions that process the input sequence in both directions. The models use recent load, calendar and holiday information, and temperature forecasts to predict the following day’s demand. A separate experiment uses NOAA Global Ensemble Forecast System (GEFS) temperatures, weighted by population and bias-corrected for the study region.</p>
 <p>Model comparisons use percentage error, Nash–Sutcliffe efficiency, and the Diebold–Mariano test to assess whether differences in forecast accuracy are statistically meaningful.</p>
 </section>
 <section id="results-across-two-test-periods">
@@ -152,9 +152,9 @@
 </figcaption>
 </figure>
 </section>
-<section id="operational-context-and-my-contribution">
-<h2>Operational context and my contribution<a class="headerlink" href="#operational-context-and-my-contribution" title="Link to this heading"></a></h2>
-<p>I contributed to the empirical paper’s methodology, software, and manuscript review. The companion review, led by Giancarlo Aquila, examines input selection, similar-day grouping, weather-station selection, hierarchical forecasting, and net demand after renewable generation. It relates these choices to Brazil’s day-ahead dispatch process, including DESSEM, as documented in 2023.</p>
+<section id="research-contribution-and-operational-context">
+<h2>Research contribution and operational context<a class="headerlink" href="#research-contribution-and-operational-context" title="Link to this heading"></a></h2>
+<p>My contributions to the empirical paper included the forecasting methodology and software used to implement and compare the models, as well as manuscript review. For the companion review, I contributed to the research and editing. Led by Giancarlo Aquila, that paper examines input selection, similar-day grouping, weather-station selection, hierarchical forecasting, and net demand after renewable generation. It relates these choices to Brazil’s day-ahead dispatch process, including DESSEM, as documented in 2023.</p>
 <p>Forecast accuracy depends on the region, input source, and evaluation period. The dataset for the three-month experiment excludes April–September 2020, leaving performance during the initial pandemic demand disruption untested. The companion review synthesizes the literature and operational context; the empirical findings come from the forecasting study.</p>
 </section>
 <section id="related-publications">

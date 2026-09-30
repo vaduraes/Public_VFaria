@@ -9,7 +9,7 @@
   <title>Mooring fragility under hurricane conditions &mdash; Victor A. D. de Faria</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d9958e39" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=e5993e72" />
 
   
     <link rel="canonical" href="https://vaduraes.github.io/Public_VFaria/projects/mooring-fragility.html" />
@@ -19,13 +19,13 @@
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/legacy-links.js?v=6911f266"></script>
-      <script src="../_static/catalog.js?v=53dc601c"></script>
+      <script src="../_static/catalog.js?v=e6fcf144"></script>
       <script src="../_static/presentations.js?v=13450fb2"></script>
       <script src="../_static/external-links.js?v=c8306aac"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Energy storage in long term planning" href="storage-capacity-expansion.html" />
-    <link rel="prev" title="Energy planning under hurricane risk" href="hurricane-risk.html" /> 
+    <link rel="prev" title="Co-located offshore wind and wave energy" href="colocated-wind-wave.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -79,9 +79,9 @@
 <li class="toctree-l2"><a class="reference internal" href="marine-device-design.html">Joint marine energy portfolio, site, and device design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource-adequacy.html">Resource adequacy with more wind and solar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="colocated-wind-wave.html">Co-located offshore wind and wave energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Mooring fragility under hurricane conditions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage-capacity-expansion.html">Energy storage in long term planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load-forecasting.html">Neural networks for electricity demand forecasting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="offshore-stochastic-portfolios.html">AI scenario generation and risk-averse offshore portfolios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="streamflow-forecasting.html">Streamflow forecasting for interconnected hydropower systems</a></li>
@@ -125,7 +125,8 @@
 <div class="entry-meta docutils container">
 <p>Infrastructure risk · Uncertainty · Renewable energy · Published 2024</p>
 </div>
-<p>Hurricanes can affect ocean-current turbines well below the sea surface. Rapid changes in current velocity create transient loads on the lines holding a device in place. This project estimates the probability that those loads exceed a mooring system’s operating limits under different wind conditions.</p>
+<p>Hurricane conditions can affect an ocean-current turbine even though the device sits below the sea surface. As winds intensify, the surrounding current may change speed quickly. That change can pull sharply on the mooring lines that hold the turbine in place, even when the current’s final speed is similar to a less demanding case.</p>
+<p>We studied how wind conditions relate to ocean-current speed and its short-term changes, then used mechanical simulations to see how the mooring responds. The resulting <strong>fragility curves</strong> estimate the probability that the modeled loads exceed the mooring system’s operating limits at different wind speeds.</p>
 <p>I worked on this <strong>NCROEP project on mooring fragility and economic risk from August 2021 to August 2023</strong>, supervised by Anderson R. de Queiroz and Mo Gabr. The paper combines my Bayesian modeling work with mechanical simulations developed with Neda Jamaleddin.</p>
 <figure class="align-default" id="id1">
 <img alt="Three fragility curves compare the probability of exceeding mooring-system specifications as wind speed increases, with substantially higher probabilities when current-speed changes are included." src="../_images/marine-mooring-fragility.png" />
@@ -135,7 +136,7 @@
 </figure>
 <section id="linking-ocean-statistics-and-structural-response">
 <h2>Linking ocean statistics and structural response<a class="headerlink" href="#linking-ocean-statistics-and-structural-response" title="Link to this heading"></a></h2>
-<p>The case study uses roughly 580 days of acoustic Doppler current-profiler measurements off North Carolina, paired with nearby wind observations. Bayesian models describe current speed and its changes, estimate extreme conditions with a 100-year recurrence interval, and relate those conditions to wind speed and depth.</p>
+<p>The case study uses roughly 580 days of ocean-current measurements off North Carolina, paired with nearby wind observations. Bayesian models relate wind speed to both the current’s speed and how abruptly it changes, and estimate extreme conditions with a 100-year recurrence interval.</p>
 <p>The statistical estimates feed a mechanical model of the <strong>RM4 ocean-current turbine’s mooring system</strong> in ANSYS AQWA. Simulations compare steady and dynamic loading, specify a mooring design capable of withstanding the selected extreme conditions, and identify its operating limits. Combining those limits with the conditional ocean-current distributions produces fragility curves across wind speeds.</p>
 </section>
 <section id="findings">

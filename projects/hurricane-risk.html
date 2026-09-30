@@ -9,7 +9,7 @@
   <title>Energy planning under hurricane risk &mdash; Victor A. D. de Faria</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d9958e39" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=e5993e72" />
 
   
     <link rel="canonical" href="https://vaduraes.github.io/Public_VFaria/projects/hurricane-risk.html" />
@@ -18,14 +18,16 @@
       <script src="../_static/documentation_options.js?v=7f41d439"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
       <script src="../_static/legacy-links.js?v=6911f266"></script>
-      <script src="../_static/catalog.js?v=53dc601c"></script>
+      <script src="../_static/catalog.js?v=e6fcf144"></script>
       <script src="../_static/presentations.js?v=13450fb2"></script>
       <script src="../_static/external-links.js?v=c8306aac"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Mooring fragility under hurricane conditions" href="mooring-fragility.html" />
-    <link rel="prev" title="Co-located offshore wind and wave energy" href="colocated-wind-wave.html" /> 
+    <link rel="next" title="Neural networks for electricity demand forecasting" href="load-forecasting.html" />
+    <link rel="prev" title="Energy storage in long term planning" href="storage-capacity-expansion.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -79,9 +81,9 @@
 <li class="toctree-l2"><a class="reference internal" href="marine-device-design.html">Joint marine energy portfolio, site, and device design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource-adequacy.html">Resource adequacy with more wind and solar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="colocated-wind-wave.html">Co-located offshore wind and wave energy</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mooring-fragility.html">Mooring fragility under hurricane conditions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage-capacity-expansion.html">Energy storage in long term planning</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load-forecasting.html">Neural networks for electricity demand forecasting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="offshore-stochastic-portfolios.html">AI scenario generation and risk-averse offshore portfolios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="streamflow-forecasting.html">Streamflow forecasting for interconnected hydropower systems</a></li>
@@ -123,31 +125,116 @@
   <section class="tex2jax_ignore mathjax_ignore" id="energy-planning-under-hurricane-risk">
 <h1>Energy planning under hurricane risk<a class="headerlink" href="#energy-planning-under-hurricane-risk" title="Link to this heading"></a></h1>
 <div class="entry-meta docutils container">
-<p>January 2023–July 2024 · North Carolina State University · Presentations: 2023 and 2024</p>
+<p>North Carolina State University · Ph.D. dissertation, Chapter 5 · 2024</p>
 </div>
-<p>Hurricane damage can reduce available electricity capacity and increase system costs. A <strong>multistage stochastic extension of TEMOA</strong> incorporates those risks into long-term generation investment decisions in North Carolina.</p>
-<section id="from-hurricane-exposure-to-investment-decisions">
-<h2>From hurricane exposure to investment decisions<a class="headerlink" href="#from-hurricane-exposure-to-investment-decisions" title="Link to this heading"></a></h2>
-<p>FEMA HAZUS wind information describes exposure at different hurricane return periods. Engineering fragility curves translate wind intensity into expected damage for different technologies and locations. The model aggregates this information into a three-region representation of the state, then reduces available capacity as hurricane scenarios unfold.</p>
-<p>Investment decisions minimize expected system cost across a scenario tree. The 2023 implementation considered three hurricane-impact levels over six stages, producing <strong>729 possible scenario paths</strong>. The broader planning analysis also examines combinations of emissions targets, offshore-wind requirements, technology development, and fuel prices.</p>
+<p>Electricity infrastructure is built for decades of service, while hurricanes can damage the resources a system depends on. That exposure matters when choosing technologies, locating new capacity, and deciding when to invest. I developed a <strong>multistage stochastic extension of TEMOA</strong> to study these decisions for North Carolina from 2023 to 2050.</p>
+<p>The work connects three parts of the problem: <strong>where hurricane winds occur, how different technologies respond, and how the energy system can adapt</strong>. Engineering evidence becomes an input to the same optimization that selects generation, storage, and network investments under changing technology costs, fuel prices, and policy requirements.</p>
+<section id="building-an-electricity-system-through-2050">
+<h2>Building an electricity system through 2050<a class="headerlink" href="#building-an-electricity-system-through-2050" title="Link to this heading"></a></h2>
+<p>Capacity expansion determines <strong>what to build, how much, where, and when</strong>. The model starts with existing infrastructure and its retirement schedule, then compares new generation, storage, transmission, and distribution investments. Technology costs, construction times, fuel use, renewable availability, electricity demand, reserve requirements, and emissions constraints all affect the plan. Operating decisions connect these investments to the electricity supplied during representative hours of each season.</p>
+<p>The North Carolina model has three planning regions, from the most exposed coastal area to less-exposed inland areas. Its technology options include solar, onshore and offshore wind, batteries, nuclear, hydropower, biomass, and fossil generation with or without carbon capture. Hurricane damage changes how much capacity survives into a later planning stage, so the model may rebuild, substitute another technology, or invest in a different region.</p>
+</section>
+<section id="turning-hurricane-winds-into-technology-damage">
+<h2>Turning hurricane winds into technology damage<a class="headerlink" href="#turning-hurricane-winds-into-technology-damage" title="Link to this heading"></a></h2>
+<p>FEMA HAZUS provides hurricane wind estimates for different return periods across the state. A central part of the project was assembling the <strong>fragility and loss relationships</strong> needed to translate those winds into damage. Appendix D.2 compares estimates from multiple engineering studies for each technology, including different turbine designs, tower and pole types, building structures, and failure mechanisms.</p>
+<p>Those estimates are not directly interchangeable. Wind speeds measured at different heights or averaged over different durations describe different loads. We brought them to a common basis: <strong>3-second gusts at 10 metres above ground</strong>. We also distinguished a fragility curve, which gives the probability of reaching a failure or damage state, from a loss curve, which gives the expected fraction of value lost. Where failure of a critical component represents loss of the whole device, its failure probability can serve as a loss proxy; other technologies require different approximations.</p>
 <figure class="align-default" id="id1">
-<img alt="Maps of hurricane wind exposure and North Carolina planning regions connect to fragility curves that estimate technology- and region-specific infrastructure damage." src="../_images/hurricane-damage-workflow.png" />
+<a class="reference internal image-reference" href="../_images/hurricane-fragility-curves.png"><img alt="Technology-specific expected damage curves rise with three-second gust wind speed at ten metres. Separate curves represent onshore and offshore wind, solar, towers, poles, composite transmission and distribution systems, and building-loss proxies for other technologies." src="../_images/hurricane-fragility-curves.png" style="width: 860px;" />
+</a>
 <figcaption>
-<p><span class="caption-text"><strong>Estimating damage by technology and region.</strong> The workflow from <a class="reference download internal" download="" href="../_downloads/d1cac740fcf0006ec2bce6b57dd45beb/phd-defense-2024-victor-faria.pdf"><span class="xref download myst">my 2024 Ph.D. defense</span></a>, PDF page 33. Wind exposure and fragility curves determine the damage estimates used in the stochastic planning model.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+<p><span class="caption-text"><strong>Different technologies translate the same wind exposure into different damage.</strong> Figure 5.4 from <a class="reference download internal" download="" href="../_downloads/4ac8a078cbe6d2d1668db58526ecd6f8/victor-faria-dissertation-chapter-5-excerpt.pdf"><span class="xref download myst">Chapter 5</span></a>, dissertation page 95. The horizontal axis is wind speed; the vertical axis is the expected damage fraction used in the model. The curves combine literature-based fragility estimates and loss functions. Their differences reflect the selected designs and assumptions, rather than universal rankings of technology vulnerability.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-</section>
-<section id="how-hurricane-risk-affects-the-investment-plan">
-<h2>How hurricane risk affects the investment plan<a class="headerlink" href="#how-hurricane-risk-affects-the-investment-plan" title="Link to this heading"></a></h2>
+<p>The resulting damage fractions reduce the capacity carried into the next investment stage. For example, a <strong>20% damage factor leaves 80 MW of a previously built 100 MW asset available</strong> in the model. Costs already committed to that asset remain, even when part of its capacity is lost. For existing plants, damage reflects their locations and is aggregated using capacity weights. For new infrastructure, county-level damage estimates are averaged within the selected planning region.</p>
+<details class="dissertation-papers project-methods">
+<summary>How the damage curves were assembled from the literature</summary><p>The comparison and selection process is documented in <strong>Appendix D.2, pages 197–204</strong>, of the <a class="reference external" href="https://www.lib.ncsu.edu/resolver/1840.20/41952">full dissertation</a>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Technology or system</p></th>
+<th class="head"><p>Evidence and modeling choices</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Onshore and offshore wind</p></td>
+<td><p>Compared turbine-collapse and component-loss studies, including Jaimes et al. (2020), Bouchard and Romanic (2023), Rose et al. (2013), and Cheng et al. (2023). The appendix selects the Bouchard–Romanic loss relationship for onshore wind and <a class="reference external" href="https://doi.org/10.1016/j.renene.2019.09.043">Wilkie and Galasso (2020)</a> for offshore wind.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Solar PV</p></td>
+<td><p>Selected the curve in <a class="reference external" href="https://www.pnnl.gov/publications/fragility-functions-resource-report-documented-sources-electricity-and-water">Kabre and Weimar’s PNNL report (2022)</a> after comparison with rooftop configurations from Goodman (2015). The model applies a common approximation to residential, commercial, and utility PV.</p></td>
+</tr>
+<tr class="row-even"><td><p>Batteries, substations, and power plants</p></td>
+<td><p>Used <a class="reference external" href="https://www.fema.gov/sites/default/files/documents/fema_hazus-hurricane-model-technical-manual-5-1.pdf">FEMA HAZUS building-loss functions</a> as proxies: low-rise steel structures for batteries and substations; mid-rise steel structures for gas, coal, oil, and biomass; and mid-rise concrete structures for hydro and nuclear.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Transmission</p></td>
+<td><p>Averaged tower estimates from several studies, including Du and Hajjar (2022), Mohammadi Darestani et al. (2019), and Schumann and Chini (2023). The system curve combines <strong>60% tower loss and 40% substation loss</strong>, using assumed capital-cost shares.</p></td>
+</tr>
+<tr class="row-even"><td><p>Distribution</p></td>
+<td><p>Selected Salman and Li’s (2015) new wooden-pole curve after comparison with other pole designs and ages. The system curve uses <strong>80% of pole damage</strong>, assuming the remaining 20% is underground and unaffected by wind.</p></td>
+</tr>
+</tbody>
+</table>
+<p>FEMA guidance and Harper, Kepert, and Ginger (2010) support the wind-speed conversions. Separate conductor and insulator failures are not represented in either network curve. The review also exposes an important source of uncertainty: published curves for the same technology can differ substantially. These selected relationships are engineering assumptions for the planning analysis, with that variability identified as further research.</p>
+</details></section>
+<section id="making-decisions-across-27-hurricane-paths">
+<h2>Making decisions across 27 hurricane paths<a class="headerlink" href="#making-decisions-across-27-hurricane-paths" title="Link to this heading"></a></h2>
+<p>The initial investment decision is made in 2023. Outcomes at 2030, 2040, and 2050 represent hurricane exposure over the intervening seven-, ten-, and ten-year intervals. Each interval has three possible outcomes: <strong>S0</strong>, negligible modeled damage; <strong>S1</strong>, medium damage associated with 50- to less-than-200-year hazards; and <strong>S2</strong>, high damage associated with hazards having return periods of at least 200 years. Three branches at each of three stages produce <strong>27 possible paths</strong>.</p>
+<p>Early investments must be shared by scenarios that have the same history: the model cannot choose them with advance knowledge of which hurricane outcome will occur. Once an outcome is known, later investment and operating decisions can differ. The objective minimizes <strong>probability-weighted investment and operating costs</strong>, discounted to the present, while meeting the modeled electricity-system requirements along each path.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/hurricane-scenario-tree.png"><img alt="The hurricane scenario tree starts in 2023 and branches at 2030, 2040, and 2050 into negligible, medium, and high-impact outcomes. The figure shows probabilities for the seven-year first interval and the subsequent ten-year intervals." src="../_images/hurricane-scenario-tree.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Invest now; adapt as hurricane outcomes unfold.</strong> Figure 5.7 from <a class="reference download internal" download="" href="../_downloads/4ac8a078cbe6d2d1668db58526ecd6f8/victor-faria-dissertation-chapter-5-excerpt.pdf"><span class="xref download myst">Chapter 5</span></a>, dissertation page 97. The labels give probabilities over each planning interval. A branch summarizes that interval’s hazard exposure, including expected damage from repeated events; it does not specify a single storm’s date or track.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<details class="dissertation-papers project-methods">
+<summary>Scenario probabilities, technology trajectories, and policy cases</summary><p>A return period describes annual rarity, rather than a regular schedule or a hurricane category. Appendix D.14 converts annual probabilities into the chance of each outcome over a planning interval. For a return period of <span class="math notranslate nohighlight">\(T\)</span> years and an interval of <span class="math notranslate nohighlight">\(n\)</span> years, the chance of at least one exceedance is <span class="math notranslate nohighlight">\(1-(1-1/T)^n\)</span>, under the study’s independent annual occurrence assumption.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Outcome</p></th>
+<th class="head text-right"><p>2023–2030</p></th>
+<th class="head text-right"><p>Each later ten-year interval</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>S0: negligible modeled damage</p></td>
+<td class="text-right"><p>86.81%</p></td>
+<td class="text-right"><p>81.71%</p></td>
+</tr>
+<tr class="row-odd"><td><p>S1: medium damage</p></td>
+<td class="text-right"><p>9.74%</p></td>
+<td class="text-right"><p>13.40%</p></td>
+</tr>
+<tr class="row-even"><td><p>S2: high damage</p></td>
+<td class="text-right"><p>3.45%</p></td>
+<td class="text-right"><p>4.89%</p></td>
+</tr>
+</tbody>
+</table>
+<p>The broader chapter first compares <strong>27 deterministic input combinations</strong>: three NREL technology-development trajectories, three EIA fuel-price trajectories, and three policy cases. These input combinations are separate from the 27 hurricane paths. The policy cases impose emissions and offshore-wind targets together, emissions targets alone, or neither.</p>
+<p>The reported hurricane comparisons use conservative and advanced technology development, the three policy cases, and reference fuel prices. This makes it possible to compare plans with and without hurricane risk while keeping their technology, fuel, and policy assumptions aligned. The scenarios reflect the study’s original 2024 context.</p>
+</details></section>
+<section id="how-hurricane-exposure-changes-the-generation-plan">
+<h2>How hurricane exposure changes the generation plan<a class="headerlink" href="#how-hurricane-exposure-changes-the-generation-plan" title="Link to this heading"></a></h2>
+<p>The clearest changes occur when offshore wind is required. As severe outcomes reduce its available capacity and output, the model compensates through other technologies and greater generation in less-exposed regions. This is a spatial planning response as well as a change in the technology mix.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/hurricane-coastal-generation.png"><img alt="Stacked annual generation in coastal region R1 in 2050. Within cases requiring offshore wind, coastal generation falls as hurricane outcomes become more severe, while other technologies and generation outside the region compensate." src="../_images/hurricane-coastal-generation.png" style="width: 860px;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Hurricane exposure changes where electricity is produced.</strong> Dissertation Figure 5.12, page 106. The bars show annual technology activity in the most exposed coastal region in 2050, measured in <strong>TWh per year</strong>. Within each policy and technology case, D is the plan without hurricane risk; S_avg is the expected stochastic outcome; the next bars average paths with at least one or two high-damage intervals. The dashed line marks regional demand. All cases use reference fuel prices. <a class="reference external" href="https://www.lib.ncsu.edu/resolver/1840.20/41952">Full dissertation</a>.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 <ul class="simple">
-<li><p><strong>Offshore-wind requirements influence the response.</strong> The 2024 defense results show little change in technology activity in cases without offshore-wind requirements, with more noticeable shifts when those requirements are included.</p></li>
-<li><p><strong>The cost effect depends on the scenario.</strong> In the reported conservative technology case with emissions and offshore-wind targets, average stochastic system cost was about 0.8% above the deterministic case without hurricanes. This comparison measures the change in modeled system cost, not total hurricane losses.</p></li>
-<li><p><strong>Damage timing remains a modeling limitation.</strong> The early implementation applies damage at the end of a planning stage. The 2023 presentation identifies damage timing and reserve requirements as areas for further development.</p></li>
+<li><p><strong>Hurricane exposure matters differently across portfolios.</strong> Cases without offshore-wind requirements show smaller changes. With those requirements, reduced offshore generation is offset by other resources and locations, including natural gas with carbon capture and some additional solar and onshore wind.</p></li>
+<li><p><strong>Expected costs and severe outcomes tell different parts of the story.</strong> In the conservative-technology case with emissions and offshore-wind targets, expected total system cost increases by about <strong>0.8%</strong> relative to the plan without hurricane risk. The conditional increase reaches <strong>3.8%</strong> for paths with at least two high-damage intervals. These are discounted system-planning costs over 2023–2050.</p></li>
+<li><p><strong>Technology progress changes the tradeoffs.</strong> With advanced technology development and emissions targets alone, the deterministic analysis finds a <strong>1–1.8%</strong> cost premium over cases with neither policy requirement. Adding the offshore-wind requirement changes that comparison. Storage and renewable generation become more important toward 2050, and natural gas with carbon capture contributes in many net-zero scenarios.</p></li>
 </ul>
-<p>I developed the Python extension and integrated hazard information into TEMOA, connecting engineering estimates of vulnerability with decisions about when, where, and how much electricity capacity to build.</p>
+<p>My contribution was to build the Python extension and the data pipeline that bring these pieces together: engineering damage estimates, geographic exposure, uncertain hurricane sequences, and decisions about future infrastructure. The result is a framework for testing how vulnerability changes an investment plan and which alternatives can compensate when exposed capacity is lost.</p>
+<p>The scope is long-term planning. Damaged capacity is treated as lost and replaced or rebuilt at coarse decision stages; detailed repair schedules and customer outages are outside the model. The relatively small expected cost effect also reflects the concentration of demand and generation inland, the selected damage curves, and the discounting of future costs. Curve uncertainty, finer storm timing, and policy incentives remain important extensions.</p>
 </section>
-<section id="presentations-code-and-related-research">
-<h2>Presentations, code, and related research<a class="headerlink" href="#presentations-code-and-related-research" title="Link to this heading"></a></h2>
+<section id="dissertation-chapter-presentations-and-code">
+<h2>Dissertation chapter, presentations, and code<a class="headerlink" href="#dissertation-chapter-presentations-and-code" title="Link to this heading"></a></h2>
+<p><strong>Chapter 5: Capacity Expansion Planning on the North Carolina Energy System: Analyzing Policies, Cost Trajectories, and Hurricane Risks.</strong> From <em>Predictive and Prescriptive Analytics Applied to Energy Systems</em> (2024).</p>
+<p><a class="reference download internal" download="" href="../_downloads/4ac8a078cbe6d2d1668db58526ecd6f8/victor-faria-dissertation-chapter-5-excerpt.pdf"><span class="xref download myst">Read the Chapter 5 excerpt (PDF, 6 pages)</span></a> — selected dissertation pages 84, 85, 95, 97, 107, and 108, including the overview, hazard and scenario figures, cost comparison, and conclusions.</p>
+<p><a class="reference external" href="https://www.lib.ncsu.edu/resolver/1840.20/41952">Full dissertation at NC State</a> — Chapter 5 presents the model and results; Appendices D.2 and D.14 document the damage-curve review and hurricane probabilities.</p>
 <p><a class="reference download internal" download="" href="../_downloads/d1cac740fcf0006ec2bce6b57dd45beb/phd-defense-2024-victor-faria.pdf"><span class="xref download myst">Ph.D. defense presentation, 2024</span></a> · <a class="reference download internal" download="" href="../_downloads/b856edea7a85ef21528fcbfdf9ece141/informs-2023-hurricane-capacity-expansion.pdf"><span class="xref download myst">INFORMS presentation, 2023</span></a> · <a class="reference download internal" download="" href="../_downloads/fdb3b253c50cdd88c1ae73970f5efab1/ncsu-2024-hurricane-planning-poster.pdf"><span class="xref download myst">Research symposium poster, 2024</span></a></p>
 <p><a class="reference external" href="https://github.com/vaduraes/TemoaHurricane_V2">TemoaHurricane_V2 on GitHub</a></p>
 <p><a class="reference internal" href="mooring-fragility.html"><span class="std std-doc">Related project: mooring-system fragility</span></a> examines how hurricane conditions affect the probability of exceeding mooring operating limits.</p>

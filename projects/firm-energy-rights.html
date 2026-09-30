@@ -9,7 +9,7 @@
   <title>Cooperative game theory for firm energy rights &mdash; Victor A. D. de Faria</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d9958e39" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=e5993e72" />
 
   
     <link rel="canonical" href="https://vaduraes.github.io/Public_VFaria/projects/firm-energy-rights.html" />
@@ -21,7 +21,7 @@
       <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
       <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
       <script src="../_static/legacy-links.js?v=6911f266"></script>
-      <script src="../_static/catalog.js?v=53dc601c"></script>
+      <script src="../_static/catalog.js?v=e6fcf144"></script>
       <script src="../_static/presentations.js?v=13450fb2"></script>
       <script src="../_static/external-links.js?v=c8306aac"></script>
     <script src="../_static/js/theme.js"></script>
@@ -81,9 +81,9 @@
 <li class="toctree-l2"><a class="reference internal" href="marine-device-design.html">Joint marine energy portfolio, site, and device design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource-adequacy.html">Resource adequacy with more wind and solar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="colocated-wind-wave.html">Co-located offshore wind and wave energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mooring-fragility.html">Mooring fragility under hurricane conditions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage-capacity-expansion.html">Energy storage in long term planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load-forecasting.html">Neural networks for electricity demand forecasting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="offshore-stochastic-portfolios.html">AI scenario generation and risk-averse offshore portfolios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="streamflow-forecasting.html">Streamflow forecasting for interconnected hydropower systems</a></li>
@@ -125,21 +125,28 @@
   <section class="tex2jax_ignore mathjax_ignore" id="cooperative-game-theory-for-firm-energy-rights">
 <h1>Cooperative game theory for firm energy rights<a class="headerlink" href="#cooperative-game-theory-for-firm-energy-rights" title="Link to this heading"></a></h1>
 <div class="entry-meta docutils container">
-<p>Research period: 2016–2017 · Federal University of Itajubá · Published in Applied Energy, 2018</p>
+<p>Federal University of Itajubá · Published in Applied Energy, 2018</p>
 </div>
-<p>Hydropower plants can produce more dependable energy when reservoirs operate together. Sharing that benefit is a separate problem: <strong>how should energy rights be allocated so that groups of plants have an incentive to remain in the coordinated system?</strong> The answer also affects incentives to invest in new plants and storage reservoirs.</p>
-<section id="balancing-investment-incentives-and-cooperation">
-<h2>Balancing investment incentives and cooperation<a class="headerlink" href="#balancing-investment-incentives-and-cooperation" title="Link to this heading"></a></h2>
-<p>The starting point is the <em>last-addition</em> allocation: each plant receives a share based on how much it adds to the system’s firm energy. This recognizes contributions such as upstream water storage, but it does not always give every group of plants as much as that group could obtain by operating alone.</p>
-<p>The proposed algorithm repeatedly finds the group with the largest allocation shortfall and adds a constraint protecting that group. It then adjusts the allocation while staying as close as possible to the last-addition shares. The stopping rule limits the remaining shortfall; an exact allocation in the cooperative game’s core would require a zero tolerance.</p>
+<p>A reservoir can store water upstream and steady the flow through several downstream plants. Its contribution to the system may therefore be larger than the electricity it produces itself. In Brazil’s centrally coordinated hydropower system, <strong>firm energy rights</strong> help determine each plant’s share of the system’s dependable output and, in turn, how much energy its owner can sell through contracts.</p>
+<p>The question is how to divide those rights. An allocation should recognize the value of a new plant or reservoir, while giving every group of plants at least as much as it could produce by operating on its own. We developed a method that brings those two aims together.</p>
+<section id="from-each-plant-s-contribution-to-a-cooperative-allocation">
+<h2>From each plant’s contribution to a cooperative allocation<a class="headerlink" href="#from-each-plant-s-contribution-to-a-cooperative-allocation" title="Link to this heading"></a></h2>
+<p>The method starts with <em>last addition</em>: run the system model with all plants, then remove one plant at a time to see how much dependable output it contributes. The incremental contributions are scaled to divide the full system firm energy. This gives storage reservoirs credit for supporting downstream generation and sends a useful signal about investments in new plants. On its own, however, last addition can leave a group of plants with less than that group could produce independently.</p>
+<p>We address that problem in three steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Check the proposed shares.</strong> An optimization model finds the group with the largest gap between its independent firm energy and the rights allocated to its members. This avoids listing every possible group of 170 plants.</p></li>
+<li><p><strong>Adjust the shares.</strong> A second model protects that group while keeping each plant’s percentage change from its last-addition share as small as possible.</p></li>
+<li><p><strong>Repeat the check.</strong> Newly identified groups are protected in turn, until the largest remaining gap falls below the chosen tolerance.</p></li>
+</ol>
 <figure class="align-default" id="id1">
-<img alt="The paper's flow diagram cycles between checking coalitions and adjusting firm-energy allocations, starting from the last-addition allocation and stopping when the largest violation falls below a tolerance." src="../_images/hydro-firm-energy-workflow.png" />
+<a class="reference internal image-reference" href="../_images/hydro-firm-energy-workflow.png"><img alt="The paper's flow diagram cycles between checking coalitions and adjusting firm-energy allocations, starting from the last-addition allocation and stopping when the largest violation falls below a tolerance." src="../_images/hydro-firm-energy-workflow.png" style="width: 860px;" />
+</a>
 <figcaption>
-<p><span class="caption-text"><strong>Checking coalitions and adjusting allocations.</strong> Figure 1 from <a class="reference external" href="https://doi.org/10.1016/j.apenergy.2018.06.065">Faria et al. (2018)</a>. The coalition-checking model (CGM) identifies the most under-allocated group. The allocation model (AFE) revises the shares to respect the constraints found so far, and the cycle repeats.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+<p><span class="caption-text"><strong>Finding and protecting groups of plants.</strong> Figure 1 from <a class="reference external" href="https://doi.org/10.1016/j.apenergy.2018.06.065">Faria et al. (2018)</a> shows the paper’s full algorithm. CGM finds the group’s shortfall; AFE adjusts the shares and retains the constraints found in earlier rounds.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <details class="dissertation-papers">
-<summary>The allocation rule and the meaning of the core</summary><p>Let <span class="math notranslate nohighlight">\(N\)</span> be all plants, <span class="math notranslate nohighlight">\(S\)</span> a group of plants, <span class="math notranslate nohighlight">\(v(S)\)</span> the firm energy that group can produce on its own, and <span class="math notranslate nohighlight">\(x_i\)</span> the allocation to plant <span class="math notranslate nohighlight">\(i\)</span>. An exact core allocation satisfies two conditions:</p>
+<summary>The allocation rule and the meaning of the core</summary><p>The <strong>core</strong> is the set of allocations for which no group of plants could obtain more firm energy by leaving the coordinated system. Let <span class="math notranslate nohighlight">\(N\)</span> be all plants, <span class="math notranslate nohighlight">\(S\)</span> a group of plants, <span class="math notranslate nohighlight">\(v(S)\)</span> the firm energy that group can produce on its own, and <span class="math notranslate nohighlight">\(x_i\)</span> the allocation to plant <span class="math notranslate nohighlight">\(i\)</span>. An exact core allocation satisfies two conditions:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -147,23 +154,31 @@
 \sum_{i \in S} x_i &amp;\ge v(S) \qquad \text{for every } S \subseteq N.
 \end{aligned}
 \end{split}\]</div>
-<p>The first distributes the full system benefit. The second ensures that no group receives less than it could produce independently. Among the allocations satisfying the constraints found so far, the algorithm minimizes the sum of squared <strong>proportional changes</strong> from the last-addition shares. Using proportional changes prevents large plants from dominating the adjustment solely because of their size.</p>
+<p>The first distributes the full system benefit. The second ensures that no group receives less than it could produce independently. The algorithm minimizes the sum of squared <strong>percentage changes</strong> from the last-addition shares, so large plants do not dominate the adjustment simply because of their size.</p>
 <p>In the experiments, the algorithm stops when the largest remaining coalition shortfall is below <span class="math notranslate nohighlight">\(\varepsilon = 0.001\,v(N)\)</span>. This is a tolerance of <strong>0.1% of total system firm energy</strong>, not 0.1% of each plant’s share. Exact core membership would require zero tolerance. See Equations (13) and (20)–(22) of the <a class="reference external" href="https://doi.org/10.1016/j.apenergy.2018.06.065">paper</a>.</p>
 </details></section>
-<section id="how-cooperation-changes-the-shares">
-<h2>How cooperation changes the shares<a class="headerlink" href="#how-cooperation-changes-the-shares" title="Link to this heading"></a></h2>
-<p>The national case represents <strong>170 Brazilian hydropower plants</strong> with 84 years of monthly inflow data. Adding <strong>21 coalition constraints</strong> was sufficient to reach the chosen tolerance. The resulting allocation remains as close as possible to the last-addition shares, but redistributes some energy rights to give groups of plants an incentive to cooperate.</p>
+<section id="what-changed-in-the-brazilian-case">
+<h2>What changed in the Brazilian case<a class="headerlink" href="#what-changed-in-the-brazilian-case" title="Link to this heading"></a></h2>
+<p>The case represents <strong>170 Brazilian hydropower plants</strong> using 84 years of monthly inflow records. The original last-addition shares left one group short by about <strong>2,496 MW-month</strong>. After adding <strong>21 group constraints</strong>, the method reduced the largest remaining shortfall below the study’s tolerance of 0.1% of total system firm energy.</p>
 <figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../_images/hydro-firm-energy-allocation-changes.png"><img alt="Histogram showing how many of the 170 hydropower plants fall into each percentage-change bin when cooperative constraints adjust their last-addition firm-energy shares." src="../_images/hydro-firm-energy-allocation-changes.png" style="width: 620px;" />
 </a>
 <figcaption>
-<p><span class="caption-text"><strong>Changes in allocated energy rights.</strong> Figure 3 from <a class="reference external" href="https://doi.org/10.1016/j.apenergy.2018.06.065">Faria et al. (2018)</a> groups plants by the percentage change in their allocation relative to the last-addition baseline. Positive bins indicate higher shares and negative bins lower shares. The bars describe changes in allocated rights, not changes in physical electricity production.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+<p><span class="caption-text"><strong>Changes in allocated energy rights.</strong> Figure 3 from <a class="reference external" href="https://doi.org/10.1016/j.apenergy.2018.06.065">Faria et al. (2018)</a> groups plants by the percentage change from their last-addition shares. Many changes are small, while others reach the outer bins near ±10%. Positive bins mean higher rights and negative bins lower rights; these are changes in allocations, not in physical electricity production.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The next figure shows why checking only a few groups is not enough. The largest shortfall falls quickly at first, then decreases more slowly as the allocation approaches the stopping threshold.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/hydro-firm-energy-coalition-gap.png"><img alt="Largest remaining coalition shortfall falls from about 2,500 megawatt-months to below the selected tolerance as cumulative CPU time increases in the 170-plant case." src="../_images/hydro-firm-energy-coalition-gap.png" style="width: 620px;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Closing the largest group shortfall.</strong> Figure 4 from <a class="reference external" href="https://doi.org/10.1016/j.apenergy.2018.06.065">Faria et al. (2018)</a>. Each point is the largest remaining gap after an allocation update, plotted against cumulative CPU time in thousands of seconds. The final gap is below 0.1% of total system firm energy.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="scaling-the-optimization-to-the-national-system">
 <h2>Scaling the optimization to the national system<a class="headerlink" href="#scaling-the-optimization-to-the-national-system" title="Link to this heading"></a></h2>
-<p>A reformulation of reservoir water balances accelerates the search for dissatisfied coalitions. The parallel representation uses natural inflows and accounts for upstream storage changes, while preserving the modeled problem. It is much faster than the conventional series representation in the tested cases.</p>
+<p>Finding the most under-allocated group is computationally difficult: 170 plants have an enormous number of possible groups. We reformulated the reservoir water balances so the optimization could search those groups using natural inflows and upstream storage changes. This <em>parallel</em> representation solves the same modeled problem much faster than the conventional <em>series</em> representation.</p>
 <p>Selected benchmarks from <strong>Table 1</strong> of the paper:</p>
 <table class="docutils align-default">
 <thead>
@@ -191,8 +206,8 @@
 </tr>
 </tbody>
 </table>
-<p>For 40 plants, the reformulation cuts reported CPU time by more than <strong>150 times</strong>. For 170 plants, the series model ran out of memory before finding its first coalition constraint, while the parallel version completed the allocation. All numeric timings in the table are <strong>CPU seconds</strong>; the paper separately reports approximately <strong>10 hours of elapsed wall-clock time</strong> for the 170-plant run.</p>
-<p>The study also tested Benders decomposition and acceleration techniques. The enhancements improved that approach, but solving the mixed-integer model directly was generally faster in the reported experiments.</p>
+<p>For 40 plants, the reformulation reduced reported CPU time by more than <strong>150 times</strong>. For 170 plants, the series model ran out of memory before finding its first group constraint, while the parallel version completed the allocation. The table reports <strong>CPU seconds</strong>; the paper separately reports about <strong>10 hours of elapsed time</strong> for the 170-plant run.</p>
+<p>We also tested Benders decomposition with acceleration techniques. Those changes improved Benders’ performance, but the direct mixed-integer formulation was generally faster in the reported comparisons.</p>
 </section>
 <section id="paper-and-related-work">
 <h2>Paper and related work<a class="headerlink" href="#paper-and-related-work" title="Link to this heading"></a></h2>

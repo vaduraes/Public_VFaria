@@ -9,7 +9,7 @@
   <title>AI scenario generation and risk-averse offshore portfolios &mdash; Victor A. D. de Faria</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d9958e39" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=e5993e72" />
 
   
     <link rel="canonical" href="https://vaduraes.github.io/Public_VFaria/projects/offshore-stochastic-portfolios.html" />
@@ -19,7 +19,7 @@
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/legacy-links.js?v=6911f266"></script>
-      <script src="../_static/catalog.js?v=53dc601c"></script>
+      <script src="../_static/catalog.js?v=e6fcf144"></script>
       <script src="../_static/presentations.js?v=13450fb2"></script>
       <script src="../_static/external-links.js?v=c8306aac"></script>
     <script src="../_static/js/theme.js"></script>
@@ -79,9 +79,9 @@
 <li class="toctree-l2"><a class="reference internal" href="marine-device-design.html">Joint marine energy portfolio, site, and device design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource-adequacy.html">Resource adequacy with more wind and solar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="colocated-wind-wave.html">Co-located offshore wind and wave energy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mooring-fragility.html">Mooring fragility under hurricane conditions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="storage-capacity-expansion.html">Energy storage in long term planning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hurricane-risk.html">Energy planning under hurricane risk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load-forecasting.html">Neural networks for electricity demand forecasting</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">AI scenario generation and risk-averse offshore portfolios</a></li>
 <li class="toctree-l2"><a class="reference internal" href="streamflow-forecasting.html">Streamflow forecasting for interconnected hydropower systems</a></li>
@@ -125,27 +125,45 @@
 <div class="entry-meta docutils container">
 <p>Artificial intelligence (AI) · Renewable energy · Uncertainty · Optimization · Published 2023</p>
 </div>
-<p>Average output alone says little about how an offshore portfolio performs on its lowest-generation days. Minimizing variance can also obscure that risk, because variance penalizes unusually high and unusually low output alike. This project uses machine learning to represent uncertainty across renewable resources and locations, then selects sites to improve generation under adverse conditions.</p>
-<p>I worked on this <strong>NCROEP project from August 2020 to August 2021</strong>, supervised by Anderson R. de Queiroz and Joseph F. DeCarolis. The 2023 paper examines uncertain resource availability; the related <a class="reference internal" href="hurricane-risk.html"><span class="std std-doc">hurricane capacity expansion project</span></a> examines infrastructure damage.</p>
+<p>A wind, wave, and ocean-current portfolio can perform well on average yet produce very little during unfavorable conditions. Minimizing overall variability does not directly address that risk: it treats unusually high and unusually low generation as equally undesirable. This study focuses instead on <strong>the days when combined output is lowest</strong>. It links an AI model that generates plausible joint resource conditions off North Carolina to an optimization model that chooses where to place offshore devices.</p>
 <figure class="align-default" id="id1">
-<img alt="Generative adversarial network architecture that treats daily wind, wave, and ocean-current maps as three-channel images to generate correlated resource scenarios." src="../_images/marine-stochastic-gan.png" />
+<a class="reference internal image-reference" href="../_images/marine-stochastic-gan.png"><img alt="Generative adversarial network architecture that treats daily wind, wave, and ocean-current maps as three-channel images to generate correlated resource scenarios." src="../_images/marine-stochastic-gan.png" style="width: 860px;" />
+</a>
 <figcaption>
-<p><span class="caption-text"><strong>Learning the relationships between locations and resources.</strong> Each day is represented as a 25 × 25 geographic grid with wind, wave, and ocean-current channels. A generator creates synthetic maps while a critic compares them with historical data. Faria et al. (2023), Figure 1. <a class="reference external" href="https://doi.org/10.1016/j.energy.2023.126946">Source paper</a>.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+<p><span class="caption-text"><strong>Learning how resources vary together.</strong> Each day becomes a 25 × 25 geographic grid with separate wind, wave, and ocean-current channels. A generator makes synthetic maps; a critic compares them with historical maps during training. Faria et al. (2023), Figure 1. <a class="reference external" href="https://doi.org/10.1016/j.energy.2023.126946">Source paper</a>.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<section id="generating-scenarios-and-selecting-sites">
-<h2>Generating scenarios and selecting sites<a class="headerlink" href="#generating-scenarios-and-selecting-sites" title="Link to this heading"></a></h2>
-<p>Wind, wave, and ocean-current data for 2007–2013 are converted into daily electricity-generation profiles. The resource maps feed a convolutional generative adversarial network, or <strong>GAN</strong>, which learns relationships across more than 500 offshore locations and three technologies. Generated samples are evaluated using historical means, covariance patterns, and maximum mean discrepancy, a measure of similarity between distributions.</p>
-<p>The generated scenarios feed a mixed-integer portfolio model. Its objective is to maximize the <strong>average generation in the worst 5% of conditions</strong>, using conditional value at risk (CVaR), subject to an upper bound on levelized energy cost. Device numbers, site capacity, and the collection-system radius constrain the choices. Repeating the optimization at different cost limits creates a frontier of tradeoffs between cost and low-generation performance.</p>
+<section id="generating-joint-offshore-scenarios">
+<h2>Generating joint offshore scenarios<a class="headerlink" href="#generating-joint-offshore-scenarios" title="Link to this heading"></a></h2>
+<p>Wind, wave, and ocean-current records overlap from 2007 to 2013. We converted them into daily generation maps and trained a convolutional <strong>generative adversarial network (GAN)</strong> across more than 500 potential sites. A useful synthetic day must keep relationships between places and resources: a portfolio’s benefit depends on whether its sites tend to have low output <em>together</em>, not just on each site’s average production.</p>
+<p>The generated maps were checked against historical site averages, relationships between pairs of sites and resources, and a distribution-similarity measure. In the paper’s tests, the GAN retained much of the observed joint variation and matched the historical data more closely than the tested multivariate normal generator. The maps are independent daily samples, not a simulated sequence of future years.</p>
+</section>
+<section id="choosing-sites-for-low-generation-days">
+<h2>Choosing sites for low-generation days<a class="headerlink" href="#choosing-sites-for-low-generation-days" title="Link to this heading"></a></h2>
+<p>The portfolio model asks: <strong>if a given mix of turbines must be built, where should they go to improve output in the hardest conditions?</strong> For each tested mix, it chooses the number of wind, wave, and ocean-current devices at each eligible site. The total number of devices <em>of each technology</em> is fixed for that comparison. Site limits, collection-system reach, and an upper bound on levelized cost of energy (LCOE) constrain the choices.</p>
+<p>The objective uses <strong>conditional value at risk (CVaR) of generation</strong>. For example, with 10,000 sampled days, it averages the portfolio’s output on the 500 lowest-generation days and tries to make that average as high as possible. Repeating the optimization under different cost ceilings shows the tradeoff between LCOE and performance on those days.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/marine-stochastic-risk-frontier.png"><img alt="In a 30-year-equivalent sample, the blue variance-minimizing frontier lies to the left of the red CVaR-optimized frontier, indicating less energy in the lowest-generation 5% of conditions at comparable cost. Black curves show repeated synthetic resamples." src="../_images/marine-stochastic-risk-frontier.png" style="width: 680px;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Directly optimizing low-output days changes the answer.</strong> Figure 8b from <a class="reference external" href="https://doi.org/10.1016/j.energy.2023.126946">Faria et al. (2023)</a>. Farther right means more generation in the worst 5% of sampled conditions; higher means greater LCOE. Red shows the CVaR-optimized portfolios, blue the variance-minimizing portfolios, and black the results of 500 new scenario samples. This example fixes 200 turbines of each technology and uses a sample with 30 years’ worth of daily maps.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 </section>
 <section id="findings">
 <h2>Findings<a class="headerlink" href="#findings" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>The generative model captures relationships between resources and sites.</strong> It reproduces important spatial and cross-resource patterns in the historical data, allowing the portfolio model to account for what different sites produce at the same time.</p></li>
-<li><p><strong>The risk metric changes the selected portfolio.</strong> In the tested cases, variance-minimizing portfolios perform worse during the lowest 5% of generation conditions than portfolios optimized directly for that outcome.</p></li>
-<li><p><strong>Larger samples give more stable estimates.</strong> Using 30 years’ worth of generated daily samples instead of 10 reduces variation in the estimated cost-risk frontier when portfolios are evaluated on new samples. Combining resources also improves low-generation performance compared with less diversified portfolios.</p></li>
+<li><p><strong>Variance is not a substitute for low-output risk.</strong> At similar cost levels in the tested portfolio, the variance-minimizing choices generated less electricity on the weakest days than choices optimized for the lowest 5% directly.</p></li>
+<li><p><strong>The number of scenarios matters.</strong> The paper compared samples containing roughly 10 and 30 years’ worth of generated daily maps. With the larger sample, the estimated cost-risk frontier varied less across 500 fresh resamples. These are sample sizes, not continuous synthetic weather histories.</p></li>
+<li><p><strong>Resource diversity improved the tested portfolios.</strong> Combinations of wind, wave, and ocean current achieved better low-generation scores than the less diverse mixes in the paper’s comparison, although wave and ocean-current options also had higher assumed costs.</p></li>
 </ul>
-<p>The method uses AI-generated scenarios to guide site selection toward better performance during periods of low generation. These scenarios represent <strong>daily joint resource conditions</strong>, rather than chronological multi-year trajectories. Modeling temporal dependence and conditions beyond the historical record would extend the analysis. The study evaluates portfolio generation risk, not grid resource adequacy.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/marine-stochastic-resource-frontiers.png"><img alt="Cost versus lowest-five-percent generation for tested combinations of offshore wind, wave, and ocean current. Mixed-resource portfolios appear farther right than the single-resource portfolios, at higher levelized costs." src="../_images/marine-stochastic-resource-frontiers.png" style="width: 700px;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>What adding resources changes.</strong> Figure 9 from <a class="reference external" href="https://doi.org/10.1016/j.energy.2023.126946">Faria et al. (2023)</a>. Labels give installed wind / wave / ocean-current capacity in gigawatts for each fixed mix. Red curves use GAN-generated days, green use historical days, and black curves show repeated synthetic samples. Farther right means better output in the lowest-generation 5% of conditions.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 </section>
 <section id="paper-and-code">
 <h2>Paper and code<a class="headerlink" href="#paper-and-code" title="Link to this heading"></a></h2>
